@@ -1,0 +1,25 @@
+.comment_row {
+    background-color: rgb(228, 222, 222);
+    display: flex;
+    margin: 0 0;
+    margin-left: 10%;
+    max-width: 60%;
+    padding: 0.5rem;
+}
+
+.comment_content {
+    max-width: 80%;
+}
+.comment_row p {
+    margin: auto 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.comment_row button {
+    margin: auto auto;
+    margin-right: 0.5rem;
+}
