@@ -3,8 +3,9 @@ TODO LIST
 -show user detaiil
     -show username
     -show upload time
-    -show update time
+        -calculate lastes time
     -show user profile image
+    -make like button
 -update sql
 -login page
 

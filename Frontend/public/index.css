@@ -1,15 +1,61 @@
-.comment_row {
-    background-color: rgb(228, 222, 222);
+body {
+    background-color: rgb(250, 248, 243);
+}
+
+.container {
+    width: 60%;
+    background-color: black;
+    padding: 1rem;
+    margin:0 auto;
+}
+
+.post_content{
+    text-align: center;
+}
+
+.post_content img{
+    width: 60%;
+}
+
+.content {
+    max-height: 300px;
+    overflow: auto
+}
+
+.fsub {
     display: flex;
-    margin: 0 0;
-    margin-left: 10%;
-    max-width: 60%;
+    margin-bottom: 1rem;
+}
+.fsub textarea{
+    resize: none;
+    width: 90%;
+    font-size: 1.5rem;
+}
+
+.fsub .submitBut {
+    margin: 0 auto;
+    margin-bottom: auto;
+
+}
+.fsub button {
+    font-size: 0.9rem;
     padding: 0.5rem;
+}
+.comment_row {
+    background-color: rgb(235, 235, 235);
+    margin: 0 auto;
+    /* max-width: 60%; */
+    padding: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .comment_content {
-    max-width: 80%;
+    background-color: white;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
+
 .comment_row p {
     margin: auto 0;
     margin-left: 0.5rem;
@@ -17,9 +63,60 @@
 
     white-space: pre-wrap;
     word-wrap: break-word;
+    font-size: 1rem;
 }
 
-.comment_row button {
-    margin: auto auto;
+.userDetail {
+    display: flex;
+    align-items: center;
+}
+
+.userDetail .userProfile {
+    width: 40px;
+    height: 40px;
+    margin: auto 0;
+}
+.userDetail .userProfile img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.userDetail .userName p{
+    font-size: 0.9rem;
+}
+
+.userDetail .uploadTime {
     margin-right: 0.5rem;
 }
+
+.userDetail .uploadTime p{
+    font-size: 0.8rem;
+}
+
+.userDetail .but {
+    margin: auto 0;
+    margin-left: auto;
+    display: flex;
+}
+
+
+.userDetail button{
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+.userDetail button:hover {
+    text-decoration: underline; /* Show underline on hover */
+}
+
+.userDetail .react {
+    display: flex;
+    
+}
+
