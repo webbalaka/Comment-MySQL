@@ -29,6 +29,7 @@ function Edit(textNode){
 inputPicture.addEventListener("change", async ()=>{
     const file = inputPicture.files[0];
     url = await process(file);
+    console.log(url);
     previewPicture.src = url;
 })
 
