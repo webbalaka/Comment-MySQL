@@ -14,8 +14,3 @@ export async function GetItem(){
     const item = await fetch(`${BACKEND_URL}/get`).then((r) => r.json());
     return item;
 }
-
-export async function GetPic(){
-    const item = await fetch(`${BACKEND_URL}/pic`).then((r) => r.text());
-    return 'data:image/png;base64,' + item;
-}

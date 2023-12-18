@@ -1,11 +1,7 @@
-import {CreateItem, GetItem, GetPic} from "./api.js";
-import TimeAgo from "javascript-time-ago";
-import th from "javascript-time-ago/locale/th"
-
+import {CreateItem, GetItem} from "./api.js";
 let editBTag = document.createElement("button");
 let likeBTag = document.createElement("button");
 
-GetPic();
 export async function FetchAndDrawTable(){
     const item = await GetItem();
     DrawTable(item);
@@ -15,7 +11,7 @@ function DrawTable(items){
     content.innerHTML = "";
     for(const item of items){
         console.log(item);
-  
+        console.log(item.Picture);
         var comment_row = document.createElement("div");
         var comment_content = document.createElement("div");
         var userDetail = document.createElement("div");
@@ -37,7 +33,7 @@ function DrawTable(items){
         const comment_content_pTag = document.createElement("p");
         comment_content_pTag.innerHTML = item.Comment;
         const userProfile_imgTag = document.createElement("img");
-        userProfile_imgTag.src = "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"
+        userProfile_imgTag.src = item.Picture;
         const userName_pTag = document.createElement("p");
         userName_pTag.innerHTML = item.Author;
         const uploadTime_pTag = document.createElement("p");
@@ -81,24 +77,30 @@ function CalculateTime(dataString){
     const date = dataString.replace("T", " ");
     const oldTime = new Date(date);
     const nowTime = new Date();
-    TimeAgo.addDefaultLocale(th);
-    const timeAgo = new TimeAgo('th');
-    return timeAgo.format(nowTime - oldTime);
-    // const dist = nowTime - oldTime;
-    // const seconds = dist / 1000;
-    // const minutes = seconds / 60;
-    // const hours = minutes / 60;
-    // const days = hours / 24;
-    // const weeks = days / 7;
-    // if(weeks < 1){
-    //     if(days < 1){
-    //         if(hours < 1){
-    //             if(minutes < 1){
-    //                 return `${f(seconds)}seconds`
-    //             }
-    //         }
-    //     }
-    // }
+    const dist = nowTime - oldTime;
+    const seconds = dist / 1000;
+    const minutes = seconds / 60;
+    const hours = minutes / 60;
+    const days = hours / 24;
+    const weeks = days / 7;
+    let value = seconds;
+    let unit = "second"
+    if(weeks >= 1){
+        value = f(weeks);
+        unit = "week";
+    } else if(days >= 1){
+        value = f(days);
+        unit = "day";
+    } else if(hours >= 1){
+        value = f(hours);
+        unit = "hour";
+    } else if(minutes){
+        value = f(minutes);
+        unit = "minute";
+    }
+    if(value > 1 ) unit += "s";
+    unit += " ago"
+    return value + " " + unit;
 }
 
 function f (num){
