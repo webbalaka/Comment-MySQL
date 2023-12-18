@@ -1,4 +1,6 @@
 import {CreateItem, GetItem, GetPic} from "./api.js";
+import TimeAgo from "javascript-time-ago";
+import th from "javascript-time-ago/locale/th"
 
 let editBTag = document.createElement("button");
 let likeBTag = document.createElement("button");
@@ -79,28 +81,36 @@ function CalculateTime(dataString){
     const date = dataString.replace("T", " ");
     const oldTime = new Date(date);
     const nowTime = new Date();
-    const dist = nowTime - oldTime;
-    const seconds = dist / 1000;
-    const minutes = seconds / 60;
-    const hours = minutes / 60;
-    if(hours < 1){
-        if(minutes < 1){
-            return `${f(seconds)} seconds ago`
-        }
-        return `${f(minutes)} minutes ago`;
-    }
-    return `${f(hours)} hours ago`;
+    TimeAgo.addDefaultLocale(th);
+    const timeAgo = new TimeAgo('th');
+    return timeAgo.format(nowTime - oldTime);
+    // const dist = nowTime - oldTime;
+    // const seconds = dist / 1000;
+    // const minutes = seconds / 60;
+    // const hours = minutes / 60;
+    // const days = hours / 24;
+    // const weeks = days / 7;
+    // if(weeks < 1){
+    //     if(days < 1){
+    //         if(hours < 1){
+    //             if(minutes < 1){
+    //                 return `${f(seconds)}seconds`
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 function f (num){
     return Math.floor(num);
 }
 
-export async function Push(text){
+export async function Push(text, Author, UserId, url){
     const payLoad = {
         Comment: text,
-        Author: "USER1",
-        UserId: "6633162221"
+        Author: Author,
+        UserId: UserId,
+        Picture: url
     }
     // console.log(payLoad);
     await CreateItem(payLoad);
