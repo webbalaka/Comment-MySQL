@@ -8,7 +8,9 @@ export async function FetchAndDrawTable(){
 }
 
 function DrawTable(items){
-    content.innerHTML = "";
+    while(content.lastChild.className != "post_content"){
+        content.removeChild(content.lastChild);
+    }
     for(const item of items){
         console.log((item.UserId));
         var comment_row = document.createElement("div");
@@ -31,8 +33,9 @@ function DrawTable(items){
 
         const comment_content_pTag = document.createElement("p");
         comment_content_pTag.innerHTML = item.Comment;
-        const userProfile_imgTag = document.createElement("img");
-        userProfile_imgTag.src = item.Picture;
+        const userProfile_imgTag = document.createElement("div");
+        userProfile_imgTag.className = "previewUserProfile";
+        userProfile_imgTag.style.backgroundImage = `url('${item.Picture}')`;
         const userName_pTag = document.createElement("p");
         userName_pTag.innerHTML = item.Author;
         const uploadTime_pTag = document.createElement("p");
