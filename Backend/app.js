@@ -29,25 +29,15 @@ app.post("/submit", async (req, res)=> {
 });
 
 app.get("/get", async(req, res)=> {
-  const sql = "SELECT * FROM comments INNER JOIN profiles USING (UserId)";
+  const sql = `SELECT * FROM comments INNER JOIN profiles USING (UserId) ORDER BY Id`;
   con.query(sql, (err, result)=>{
     if(err) throw err;
-    const decode = Buffer.from((result[0].Picture), 'base64');
-    console.log(decode);
+    for(let item of result){
+      item.Picture = Buffer(item.Picture).toString();
+    }
     res.status(200).json(result);
   })
 })
-
-// app.get("/pic", async(req, res)=> {
-//   const sql = "SELECT Picture FROM profiles WHERE UserId = '6633162223'";
-//   con.query(sql, (err, result)=>{
-//     if(err) throw err;
-//     const decode = Buffer.from(result[0].Picture.Picture, 'base64');
-//     // console.log(result);
-//     // console.log(decode);
-//     res.send(decode);
-//   })
-// })
 
 function encode (url){
   

@@ -10,8 +10,7 @@ export async function FetchAndDrawTable(){
 function DrawTable(items){
     content.innerHTML = "";
     for(const item of items){
-        console.log(item);
-        console.log(item.Picture);
+        console.log((item.UserId));
         var comment_row = document.createElement("div");
         var comment_content = document.createElement("div");
         var userDetail = document.createElement("div");
@@ -114,7 +113,7 @@ export async function Push(text, Author, UserId, url){
         UserId: UserId,
         Picture: url
     }
-    // console.log(payLoad);
+    console.log(payLoad);
     await CreateItem(payLoad);
     await FetchAndDrawTable();
 }
