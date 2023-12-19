@@ -6,6 +6,7 @@ export async function process(file, min_image_size = 300){
         if(old_size > min_image_size){
             const resized = await reduce_image_size(encoded);
             console.log(calculate_size(resized));
+            return resized;
         }
         else return encoded;
     }

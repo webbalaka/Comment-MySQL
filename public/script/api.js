@@ -14,3 +14,7 @@ export async function GetItem(){
     const item = await fetch(`${BACKEND_URL}/get`).then((r) => r.json());
     return item;
 }
+
+
+
+
