@@ -1,8 +1,10 @@
 import {FetchAndDrawTable, Push} from "./table.js"
 import {process} from "./image.js"
-let url = "https://miro.medium.com/v2/resize:fit:450/1*9dbWWY4LzLIkjEHvDf4bDQ.jpeg";
+let url = "https://i.kym-cdn.com/entries/icons/original/000/047/264/josh_hutcherson_whistle.jpg";
+let file = "https://i.kym-cdn.com/entries/icons/original/000/047/264/josh_hutcherson_whistle.jpg";
 document.addEventListener("DOMContentLoaded", ()=>{
     FetchAndDrawTable();
+    
 })
 
 userMsg.addEventListener("keydown", (event)=>{
@@ -27,7 +29,7 @@ function Edit(textNode){
 }
 
 inputPicture.addEventListener("change", async ()=>{
-    const file = inputPicture.files[0];
+    file = inputPicture.files[0];
     url = await process(file);
     console.log(url);
     previewPicture.src = url;
