@@ -29,7 +29,7 @@ app.post("/submit", async (req, res)=> {
 });
 
 app.get("/get", async(req, res)=> {
-  const sql = `SELECT * FROM comments INNER JOIN profiles USING (UserId) ORDER BY Id`;
+  const sql = `SELECT * FROM comments INNER JOIN profiles ON comments.UserId = profiles.UserId`;
   con.query(sql, (err, result)=>{
     if(err) throw err;
     for(let item of result){
@@ -39,9 +39,21 @@ app.get("/get", async(req, res)=> {
   })
 })
 
-function encode (url){
-  
-}
+app.put("/update", async(req, res)=>{
+  const item = req.body;
+  const sql = `UPDATE comments SET Comment = "${item.Comment}" WHERE Id="${item.Id}"`
+  con.query(sql, (err, result)=>{
+    if(err) throw err;
+  })
+})
+
+app.put("/like", async(req, res)=>{
+  const item = req.body;
+  const sql = `UPDATE comments SET LikeCount = LikeCount + 1 WHERE Id="${item.Id}"`
+  con.query(sql, (err, result)=>{
+    if(err) throw err;
+  })
+})
 
 
 export default app;

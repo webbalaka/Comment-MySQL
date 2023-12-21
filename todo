@@ -1,11 +1,11 @@
 TODO LIST
 -fetch table @done
--show user detaiil
-    -show username
-    -show upload time
-        -calculate lastes time
-    -show user profile image
-    -make like button
+-show user detaiil @done
+    -show username @done
+    -show upload time @done
+        -calculate lastes time @done
+    -show user profile image @done
+    -make like button @done
 -update sql
--login page
+-like sql
 

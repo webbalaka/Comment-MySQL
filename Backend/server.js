@@ -4,6 +4,6 @@ import express from "express";
 
 
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Backend Server ready at http://localhost:${PORT}`);
+    console.log(`${PORT}`);
   });
   
