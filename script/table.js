@@ -1,4 +1,5 @@
 import {CreateItem, GetItem} from "./api.js";
+import {EditItem, LikeItem} from "./but.js"
 let editBTag = document.createElement("button");
 let likeBTag = document.createElement("button");
 
@@ -7,12 +8,13 @@ export async function FetchAndDrawTable(){
     DrawTable(item);
 }
 
+
 function DrawTable(items){
     while(content.lastChild.className != "post_content"){
         content.removeChild(content.lastChild);
     }
     for(const item of items){
-        console.log((item.UserId));
+        // console.log((item.UserId));
         var comment_row = document.createElement("div");
         var comment_content = document.createElement("div");
         var userDetail = document.createElement("div");
@@ -39,23 +41,16 @@ function DrawTable(items){
         const userName_pTag = document.createElement("p");
         userName_pTag.innerHTML = item.Author;
         const uploadTime_pTag = document.createElement("p");
-        uploadTime_pTag.innerHTML = CalculateTime(item.UpdateAt);
+        uploadTime_pTag.innerHTML = CalculateTime(item.CreatedAt);
         const react_pTag = document.createElement("p");
-        react_pTag.innerHTML = "0";
+        react_pTag.innerHTML = item.LikeCount;
         
 
         likeBTag = document.createElement("button");
         editBTag = document.createElement("button");
-        likeBTag.innerHTML = "like";
+        likeBTag.innerHTML = "Like";
         editBTag.innerHTML = "Edit";
         
-        likeBTag.onclick = ()=>{
-            Edit(item.Comment);
-        };
-        editBTag.onclick = ()=>{
-            Edit(item.Comment);
-        };
-
         comment_content.appendChild(comment_content_pTag);
         
         userProfile.appendChild(userProfile_imgTag);
@@ -72,6 +67,13 @@ function DrawTable(items){
         comment_row.appendChild(comment_content);
         comment_row.appendChild(userDetail);
         content.appendChild(comment_row);
+
+        likeBTag.onclick = async ()=>{
+            await LikeItem(item);
+        };
+        editBTag.onclick = async ()=>{
+            await EditItem(item);
+        };
     }
 }
 
